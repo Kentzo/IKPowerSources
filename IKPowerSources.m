@@ -23,7 +23,9 @@
 
 IKPowerSourceType IKGetProvidingPowerSourceType()
 {
-    CFStringRef type = IOPSGetProvidingPowerSourceType(IOPSCopyPowerSourcesInfo());
+    CFTypeRef powerSource = IOPSCopyPowerSourcesInfo();
+    CFStringRef type = IOPSGetProvidingPowerSourceType(powerSource);
+    CFRelease(powerSource);
     if (CFStringCompare(type, CFSTR(kIOPSBatteryPowerValue), 0) == kCFCompareEqualTo)
         return IKBatteryPowerType;
     else if (CFStringCompare(type, CFSTR(kIOPMBatteryPowerKey), 0) == kCFCompareEqualTo)
