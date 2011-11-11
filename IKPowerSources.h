@@ -2,7 +2,8 @@
 //  Created by Ilya Kulakov on 09.10.11.
 //  Copyright 2011 kulakov.ilya@gmail.com All rights
 
-#include <IOKit/ps/IOPowerSources.h>
+#import <IOKit/ps/IOPowerSources.h>
+#import <CoreFoundation/CoreFoundation.h>
 
 
 typedef enum {
@@ -13,7 +14,7 @@ typedef enum {
 
 
 /*!
- @abstract Similar to IOPSGetProvidingPowerSourceType, but returns enum values instead.
- @see IOPSGetProvidingPowerSourceType
+ @abstract  Similar to IOPSGetProvidingPowerSourceType, but returns enum values instead.
+ @see       IOPSGetProvidingPowerSourceType
  */
-IKPowerSourceType IKGetProvidingPowerSourceType();
+IKPowerSourceType IKGetProvidingPowerSourceType(void);

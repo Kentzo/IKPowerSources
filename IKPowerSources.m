@@ -3,9 +3,9 @@
 //  Copyright 2011 kulakov.ilya@gmail.com All rights reserved.
 //
 
-#include <IOKit/ps/IOPSKeys.h>
-#import <CoreFoundation/CoreFoundation.h>
+#import <IOKit/ps/IOPSKeys.h>
 #import "IKPowerSources.h"
+
 
 // http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
 #ifndef kIOPMUPSPowerKey
@@ -21,7 +21,7 @@
 #endif
 
 
-IKPowerSourceType IKGetProvidingPowerSourceType()
+IKPowerSourceType IKGetProvidingPowerSourceType(void)
 {
     CFTypeRef powerSource = IOPSCopyPowerSourcesInfo();
     CFStringRef type = IOPSGetProvidingPowerSourceType(powerSource);
