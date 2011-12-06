@@ -23,13 +23,20 @@
 
 IKPowerSourceType IKGetProvidingPowerSourceType(void)
 {
-    CFTypeRef powerSource = IOPSCopyPowerSourcesInfo();
-    CFStringRef type = IOPSGetProvidingPowerSourceType(powerSource);
-    CFRelease(powerSource);
-    if (CFStringCompare(type, CFSTR(kIOPSBatteryPowerValue), 0) == kCFCompareEqualTo)
-        return IKBatteryPowerType;
-    else if (CFStringCompare(type, CFSTR(kIOPMBatteryPowerKey), 0) == kCFCompareEqualTo)
-        return IKUPSPowerType;
-    else
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_6)
+    {
         return IKACPowerType;
+    }
+    else
+    {
+        CFTypeRef powerSource = IOPSCopyPowerSourcesInfo();
+        CFStringRef type = IOPSGetProvidingPowerSourceType(powerSource);
+        CFRelease(powerSource);
+        if (CFStringCompare(type, CFSTR(kIOPSBatteryPowerValue), 0) == kCFCompareEqualTo)
+            return IKBatteryPowerType;
+        else if (CFStringCompare(type, CFSTR(kIOPMBatteryPowerKey), 0) == kCFCompareEqualTo)
+            return IKUPSPowerType;
+        else
+            return IKACPowerType;
+    }
 }
