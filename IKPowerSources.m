@@ -3,6 +3,7 @@
 //  Copyright 2011 kulakov.ilya@gmail.com All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
 #import <IOKit/ps/IOPSKeys.h>
 #import "IKPowerSources.h"
 
